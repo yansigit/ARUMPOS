@@ -1,0 +1,28 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:ARUMPOS"
+             xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
+             x:Class="ARUMPOS.App">
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+    <Application.Resources>
+        <themes:BundledTheme BaseTheme="Light" PrimaryColor="DeepOrange" SecondaryColor="Orange"/>
+    </Application.Resources>
+    <Application.Styles>
+        <FluentTheme Mode="Light"/>
+        <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
+        <StyleInclude Source="avares://Material.Avalonia/Material.Avalonia.Templates.xaml" />
+        <Style Selector="TextBox">
+            <Setter Property="FontFamily" Value="avares://ARUMPOS/Assets/#NanumSquare" />
+        </Style>
+        <Style Selector="TextBlock">
+            <Setter Property="FontFamily" Value="avares://ARUMPOS/Assets/#NanumSquare" />
+            <Setter Property="FontSize" Value="17" />
+        </Style>
+    </Application.Styles>
+    <!-- <Application.Styles> -->
+    <!--     <FluentTheme Mode="Dark"/> -->
+    <!--     <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/> -->
+    <!-- </Application.Styles> -->
+</Application>

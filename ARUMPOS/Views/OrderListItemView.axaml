@@ -1,0 +1,131 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:ARUMPOS.ViewModels"
+             xmlns:micon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ARUMPOS.Views.OrderListItemView">
+    <Design.DataContext>
+        <vm:OrderListItemViewModel />
+    </Design.DataContext>
+    <Expander HorizontalAlignment="Stretch" Margin="10"
+              HorizontalContentAlignment="Stretch"
+              VerticalContentAlignment="Top"
+              IsExpanded="True" Background="{Binding Background}">
+        <Expander.Header>
+            <StackPanel Orientation="Horizontal" Spacing="10">
+                <micon:MaterialIcon Kind="OrderBoolDescending" Width="30" Height="30" Foreground="#ff5722" />
+                <TextBlock FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Foreground="#ff5722"
+                           Text="{Binding HeaderText}" />
+                <Button Margin="50 0" Background="#ff5722" IsVisible="{Binding IsProcessButtonVisible}"
+                        Command="{Binding ProcessCommand}" CommandParameter="{x:Null}">
+                  <StackPanel Spacing="10" Orientation="Horizontal" VerticalAlignment="Center">
+                      <micon:MaterialIcon Kind="{Binding ButtonIcon}" Width="30" Height="30" Foreground="white" />
+                      <TextBlock VerticalAlignment="Center" Foreground="white" Text="{Binding ButtonString}" />
+                  </StackPanel>
+                </Button>
+            </StackPanel>
+        </Expander.Header>
+      <StackPanel Spacing="10">
+        <StackPanel Orientation="Horizontal" Spacing="10">
+            <Button Background="#ff5722"
+                    IsVisible="{Binding IsEstimatedTimeButtonVisible}"
+                    Command="{Binding SetEstimatedTime}">
+                <Button.CommandParameter>
+                    <system:Int32>5</system:Int32>
+                </Button.CommandParameter>
+                <StackPanel Spacing="10" Orientation="Horizontal" VerticalAlignment="Center">
+                    <micon:MaterialIcon Kind="Timer" Width="30" Height="30" Foreground="white" />
+                    <TextBlock VerticalAlignment="Center" Foreground="white" Text="5분" />
+                </StackPanel>
+            </Button>
+            <Button Background="#ff5722"
+                    IsVisible="{Binding IsEstimatedTimeButtonVisible}"
+                    Command="{Binding SetEstimatedTime}">
+                <Button.CommandParameter>
+                    <system:Int32>10</system:Int32>
+                </Button.CommandParameter>
+                <StackPanel Spacing="10" Orientation="Horizontal" VerticalAlignment="Center">
+                    <micon:MaterialIcon Kind="Timer" Width="30" Height="30" Foreground="white" />
+                    <TextBlock VerticalAlignment="Center" Foreground="white" Text="10분" />
+                </StackPanel>
+            </Button>
+            <Button Background="#ff5722"
+                    IsVisible="{Binding IsEstimatedTimeButtonVisible}"
+                    Command="{Binding SetEstimatedTime}">
+                <Button.CommandParameter>
+                    <system:Int32>20</system:Int32>
+                </Button.CommandParameter>
+                <StackPanel Spacing="10" Orientation="Horizontal" VerticalAlignment="Center">
+                    <micon:MaterialIcon Kind="Timer" Width="30" Height="30" Foreground="white" />
+                    <TextBlock VerticalAlignment="Center" Foreground="white" Text="20분" />
+                </StackPanel>
+            </Button>
+            <Button Background="#ff5722"
+                    IsVisible="{Binding IsEstimatedTimeButtonVisible}"
+                    Command="{Binding SetEstimatedTime}">
+                <Button.CommandParameter>
+                    <system:Int32>30</system:Int32>
+                </Button.CommandParameter>
+                <StackPanel Spacing="10" Orientation="Horizontal" VerticalAlignment="Center">
+                    <micon:MaterialIcon Kind="Timer" Width="30" Height="30" Foreground="white" />
+                    <TextBlock VerticalAlignment="Center" Foreground="white" Text="30분" />
+                </StackPanel>
+            </Button>
+
+            <Button Background="#ff5722"
+                    IsVisible="{Binding IsEstimatedTimeButtonVisible}"
+                    Command="{Binding CancelOrder}">
+                <StackPanel Spacing="10" Orientation="Horizontal" VerticalAlignment="Center">
+                    <micon:MaterialIcon Kind="Cancel" Width="30" Height="30" Foreground="white" />
+                    <TextBlock VerticalAlignment="Center" Foreground="white" Text="취소" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+          <DataGrid Margin="10" Items="{Binding Order.MenuList}"
+                    AutoGenerateColumns="False"
+                    CanUserSortColumns="False"
+                    IsHitTestVisible="False"
+                    HorizontalGridLinesBrush="White"
+                    HorizontalAlignment="Center"
+                    HorizontalScrollBarVisibility="Hidden"
+                    GridLinesVisibility="Horizontal">
+              <DataGrid.Columns>
+                  <DataGridTextColumn Header="메뉴명" Width="2*" Binding="{Binding Name}" />
+                  <DataGridTextColumn Header="갯수" Width="*" Binding="{Binding Quantity}" />
+                  <DataGridTextColumn Header="가격" Width="*" Binding="{Binding Price}" />
+                  <DataGridTextColumn Header="옵션" Width="3*" Binding="{Binding OptionsToString}" />
+              </DataGrid.Columns>
+              <DataGrid.Styles>
+                  <Style Selector="DataGridRow">
+                      <Setter Property="Background" Value="Transparent" />
+                  </Style>
+                  <Style Selector="DataGridCell">
+                      <Setter Property="Padding" Value="10" />
+                      <Setter Property="HorizontalContentAlignment" Value="Center" />
+                  </Style>
+                  <Style Selector="DataGridColumnHeader">
+                      <Setter Property="Background" Value="White" />
+                      <Setter Property="HorizontalContentAlignment" Value="Center" />
+                  </Style>
+                  <Style Selector="DataGridColumnHeader TextBlock">
+                      <Setter Property="Foreground" Value="#000F2D" />
+                      <Setter Property="FontSize" Value="20" />
+                      <Setter Property="HorizontalAlignment" Value="Center" />
+                      <Setter Property="Margin" Value="15 0 0 0" />
+                  </Style>
+              </DataGrid.Styles>
+          </DataGrid>
+      </StackPanel>
+    </Expander>
+
+
+    <UserControl.Styles>
+        <Style Selector="DataGridRow">
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="Background" Value="Black" />
+        </Style>
+    </UserControl.Styles>
+</UserControl>

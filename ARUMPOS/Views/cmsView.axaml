@@ -1,0 +1,99 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:ARUMPOS.ViewModels"
+             xmlns:v="using:ARUMPOS.Views"
+             xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+             xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+             xmlns:materialStyle="clr-namespace:Material.Styles;assembly=Material.Styles"
+             xmlns:materialIcon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ARUMPOS.Views.CmsView">
+    <Design.DataContext>
+        <vm:CmsViewModel />
+    </Design.DataContext>
+    <UserControl.DataContext>
+        <vm:CmsViewModel />
+    </UserControl.DataContext>
+    <UserControl.Styles>
+        <Style Selector="Button.StretchedButton">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="1 0" />
+        </Style>
+    </UserControl.Styles>
+    
+    <RelativePanel>
+        <ListBox x:Name="CmsListBox" Items="{Binding ItemList}"
+                 SelectedItem="{Binding SelectedItem}"
+                 VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                 RelativePanel.AlignRightWithPanel="True"
+                 RelativePanel.AlignLeftWithPanel="True"
+                 Padding="0 0 15 0">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <v:CmsListBoxCardView />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.Styles>
+                <Style Selector="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+                <Style Selector="ListBox Grid#rootGrid">
+                    <Setter Property="MinWidth" Value="40" />
+                </Style>
+                <Style Selector="ListBox Thumb#thumb">
+                    <Setter Property="MinWidth" Value="40" />
+                </Style>
+            </ListBox.Styles>
+        </ListBox>
+        <materialStyle:FloatingButton FontSize="20"
+                                      Margin="20 "
+                                      HorizontalAlignment="Left"
+                                      RelativePanel.AlignLeftWithPanel="True"
+                                      RelativePanel.AlignBottomWithPanel="True"
+                                      Classes="Accent"
+                                      Command="{Binding BackButtonCommand}"
+                                      CommandParameter="{x:Null}">
+            <materialIcon:MaterialIcon Kind="ArrowLeft" Width="24" Height="24" />
+        </materialStyle:FloatingButton>
+        <materialStyle:FloatingButton FontSize="20"
+                                      Margin="20"
+                                      RelativePanel.AlignRightWithPanel="True"
+                                      RelativePanel.AlignBottomWithPanel="True"
+                                      Classes="Accent"
+                                      Command="{Binding AddButtonCommand}"
+                                      CommandParameter="{x:Null}">
+            <materialIcon:MaterialIcon Kind="Plus" Width="24" Height="24" />
+        </materialStyle:FloatingButton>
+        <StackPanel Orientation="Horizontal"
+                    Margin="20"
+                    RelativePanel.AlignBottomWithPanel="True"
+                    RelativePanel.AlignHorizontalCenterWithPanel="True"
+                    Spacing="10">
+          <Button Content="선택" Command="{Binding PickItem}" />
+          <Button Content="수정" Command="{Binding ModifyButtonCommand}" />
+          <Button Content="품절처리" Command="{Binding SoldOut}" />
+          <Button Content="삭제" Command="{Binding DeleteItem}" />
+          <StackPanel.Styles>
+              <Style Selector="Button">
+                  <Setter Property="VerticalAlignment" Value="Stretch" />
+                  <Setter Property="Margin" Value="0 5"></Setter>
+              </Style>
+              <Style Selector="Button TextBlock">
+                  <Setter Property="Foreground" Value="White" />
+                  <Setter Property="FontSize" Value="15" />
+                  <Setter Property="FontWeight" Value="Bold"></Setter>
+              </Style>
+          </StackPanel.Styles>
+        </StackPanel>
+	</RelativePanel>
+</UserControl>

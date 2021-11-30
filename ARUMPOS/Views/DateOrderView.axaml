@@ -1,0 +1,57 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:ARUMPOS.Views"
+             xmlns:vm="clr-namespace:ARUMPOS.ViewModels"
+             xmlns:styles="clr-namespace:Material.Styles;assembly=Material.Styles"
+             xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ARUMPOS.Views.DateOrderView">
+    <Design.DataContext>
+        <vm:DateOrderViewModel />
+    </Design.DataContext>
+    <UserControl.DataContext>
+        <vm:DateOrderViewModel />
+    </UserControl.DataContext>
+    <RelativePanel>
+        <DatePicker RelativePanel.AlignTopWithPanel="True"
+                    RelativePanel.AlignHorizontalCenterWithPanel="True"
+                    x:Name="DatePicker" 
+                    SelectedDate="{Binding SelectedDate, Mode=OneWayToSource}" />
+        <ListBox RelativePanel.Below="DatePicker"
+                 RelativePanel.AlignLeftWithPanel="True"
+                 RelativePanel.AlignRightWithPanel="True"
+                 RelativePanel.AlignBottomWithPanel="True"
+                 Padding="0,0,15,0"
+                 Items="{Binding OrderList}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <views:OrderListItemView />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.Styles>
+                <Style Selector="ListBox Grid#rootGrid">
+                    <Setter Property="MinWidth" Value="40" />
+                </Style>
+                <Style Selector="ListBox Thumb#thumb">
+                    <Setter Property="MinWidth" Value="40" />
+                </Style>
+            </ListBox.Styles>
+        </ListBox>
+        <styles:FloatingButton Margin="20"
+                               Command="{Binding GoPageBefore}"
+                               CommandParameter="{x:Null}"
+                               RelativePanel.AlignLeftWithPanel="True"
+                               RelativePanel.AlignBottomWithPanel="True">
+            <avalonia:MaterialIcon Kind="ArrowLeftBold" Width="25" Height="25" Foreground="White" />
+        </styles:FloatingButton>
+        <styles:FloatingButton RelativePanel.AlignRightWithPanel="True"
+                               Command="{Binding GoPageAfter}"
+                               CommandParameter="{x:Null}"
+                               Margin="20"
+                               RelativePanel.AlignBottomWithPanel="True">
+            <avalonia:MaterialIcon Kind="ArrowRightBold" Width="25" Height="25" Foreground="White" />
+        </styles:FloatingButton>
+    </RelativePanel>
+</UserControl>

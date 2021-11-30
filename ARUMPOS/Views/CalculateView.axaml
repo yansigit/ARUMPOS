@@ -1,0 +1,118 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+             xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+             xmlns:vm="using:ARUMPOS.ViewModels"
+             xmlns:styles="clr-namespace:Material.Styles;assembly=Material.Styles"
+             xmlns:micon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="450"
+             x:Class="ARUMPOS.Views.CalculateView">
+
+  <UserControl.DataContext>
+      <vm:CalculateViewModel />
+  </UserControl.DataContext>
+
+    <Design.DataContext>
+        <vm:CalculateViewModel />
+    </Design.DataContext>
+
+    <DockPanel>
+      <Grid  DockPanel.Dock="Bottom" ColumnDefinitions="*,*">
+          <Button HorizontalAlignment="Stretch"
+                  Grid.Column="0"
+                  Command="{Binding PrintJungsan}"
+                  x:Name="DayPrintButton"
+                  CommandParameter="day"
+                  HorizontalContentAlignment="Center" Margin="0 10 0 0"
+                  VerticalContentAlignment="Center" Foreground="White"
+                  FontSize="20" FontWeight="ExtraBold" Padding="10">일별 영수증 출력</Button>
+          <Button HorizontalAlignment="Stretch"
+                  Grid.Column="1"
+                  Command="{Binding PrintJungsan}"
+                  x:Name="MonthPrintButton"
+                  CommandParameter="month"
+                  HorizontalContentAlignment="Center" Margin="0 10 0 0"
+                  VerticalContentAlignment="Center" Foreground="White"
+                  FontSize="20" FontWeight="ExtraBold" Padding="10">월별 영수증 출력</Button>
+
+      </Grid>
+        <StackPanel DockPanel.Dock="Top" Margin="0 10 0 0">
+            <Rectangle HorizontalAlignment="Stretch" Height="2"
+                       Fill="#ff5722" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Top">
+                <micon:MaterialIcon Kind="CalculatorVariantOutline"
+                                    Foreground="#ff5722"
+                                    Width="30" Height="30" />
+                <TextBlock Text="{Binding CurrentDate}"
+                           Foreground="#ff5722"
+                           Margin="10" FontSize="20" FontWeight="SemiBold"
+                           HorizontalAlignment="Center"/>
+            </StackPanel>
+            <Rectangle HorizontalAlignment="Stretch" Height="2"
+                       Fill="#ff5722" />
+        </StackPanel>
+		<DatePicker DayVisible="False" DockPanel.Dock="Top"
+                    Margin="0 10 0 0"
+                    HorizontalAlignment="Center"
+                    BorderThickness="0"
+                    Background="#ff5722"
+                    Foreground="White"
+                    SelectedDate="{Binding SelectedDate, Mode=TwoWay}">
+            <DatePicker.Header>
+                <TextBlock HorizontalAlignment="Center">정산 연도와 월을 선택하세요</TextBlock>
+            </DatePicker.Header>
+        </DatePicker>
+        <styles:Card Margin="10" DockPanel.Dock="Bottom">
+			<StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+                <TextBlock Text="{Binding Sales}" />
+                <micon:MaterialIcon Width="20" Height="20" Kind="Dot" />
+                <TextBlock Text="{Binding Discount}" />
+                <micon:MaterialIcon Width="20" Height="20" Kind="Dot" />
+                <TextBlock Text="{Binding Income}" />
+			</StackPanel>
+        </styles:Card>
+        <styles:Card Margin="10">
+            <DataGrid Items="{Binding OrderList}"
+                      AutoGenerateColumns="False"
+                      Margin="0 10 0 0"
+                      HorizontalAlignment="Center"
+                      HorizontalGridLinesBrush="#FFAE7D"
+                      GridLinesVisibility="Horizontal"
+                      CanUserSortColumns="False" IsReadOnly="True"
+                      VerticalScrollBarVisibility="Visible">
+				        <DataGrid.Columns>
+                    <DataGridTextColumn Width="1*" Header="일자" Binding="{Binding ShortDate}" />
+                    <DataGridTextColumn Width="1*" Header="매출액" Binding="{Binding SalesPrice}" />
+                    <DataGridTextColumn Width="1*" Header="할인액" Binding="{Binding DiscountPrice}" />
+                    <DataGridTextColumn Width="1*" Header="순이익" Binding="{Binding ProfitPrice}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </styles:Card>
+    </DockPanel>
+	<UserControl.Styles>
+		<Style Selector="DataGridColumnHeader">
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+        <Style Selector="DataGridColumnHeader TextBlock">
+            <Setter Property="Foreground" Value="#cb451b"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="15 0 0 0" />
+        </Style>
+        <Style Selector="DataGridCell">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+        <Style Selector="DataGridCell TextBlock">
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+        <Style Selector="DatePicker:pointerover Button[IsPointerOver=True] TextBlock">
+            <Setter Property="Foreground" Value="#ff5722" />
+        </Style>
+        <Style Selector="DatePicker Popup TextBlock">
+            <Setter Property="Foreground" Value="#ff5722" />
+        </Style>
+	</UserControl.Styles>
+</UserControl>

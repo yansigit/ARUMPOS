@@ -1,0 +1,82 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ApplicationIcon>Assets\avalonia-logo.ico</ApplicationIcon>
+    <Win32Resource />
+  </PropertyGroup>
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Remove="Assets\ResourceDictionary.axaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Assets\Cafe24Ohsquareair.ttf" />
+    <None Remove="Assets\Cafe24Simplehae.ttf" />
+    <None Remove="Assets\Cafe24SsurroundAir.ttf" />
+    <None Remove="Assets\cooking.gif" />
+    <None Remove="Assets\Fonts\NanumSquareB.ttf" />
+    <None Remove="Assets\Fonts\NanumSquareEB.ttf" />
+    <None Remove="Assets\Fonts\NanumSquareL.ttf" />
+    <None Remove="Assets\Fonts\NanumSquareR.ttf" />
+    <None Remove="Assets\Fonts\NanumSquareRoundB.ttf" />
+    <None Remove="Assets\Fonts\NanumSquareRoundEB.ttf" />
+    <None Remove="Assets\Fonts\NanumSquareRoundL.ttf" />
+    <None Remove="Assets\Fonts\NanumSquareRoundR.ttf" />
+    <None Remove="Assets\Fonts\NanumSquare_acB.ttf" />
+    <None Remove="Assets\Fonts\NanumSquare_acEB.ttf" />
+    <None Remove="Assets\Fonts\NanumSquare_acL.ttf" />
+    <None Remove="Assets\Fonts\NanumSquare_acR.ttf" />
+    <None Remove="Assets\GmarketSansTTFBold.ttf" />
+    <None Remove="Assets\GmarketSansTTFLight.ttf" />
+    <None Remove="Assets\GmarketSansTTFMedium.ttf" />
+    <None Remove="Assets\google-logo.png" />
+    <None Remove="Assets\options.png" />
+    <None Remove="Assets\order_sound.wav" />
+    <None Remove="Assets\paper.png" />
+    <None Remove="Assets\ringtone.mp3" />
+    <None Remove="Assets\ringtone.wav" />
+    <None Remove="settings.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.10.7" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.7" />
+    <PackageReference Include="Avalonia.Diagnostics" Version="0.10.7" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.7" />
+    <PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.10.7.1" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.3.11" />
+    <PackageReference Include="ESCPOS_NET" Version="1.6.0" />
+    <PackageReference Include="Material.Avalonia" Version="2.4.0" />
+    <PackageReference Include="MessageBox.Avalonia" Version="1.5.1" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.2" />
+    <PackageReference Include="Projektanker.Icons.Avalonia" Version="3.1.2" />
+    <PackageReference Include="Projektanker.Icons.Avalonia.FontAwesome" Version="3.1.2" />
+    <PackageReference Include="ScottPlot" Version="4.1.25" />
+    <PackageReference Include="ScottPlot.Avalonia" Version="4.1.25" />
+    <PackageReference Include="System.Windows.Extensions" Version="5.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ArumModels\ArumModels.csproj" />
+    <ProjectReference Include="..\posPrinterServer\POSPrinterLibrary.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaXaml Update="Assets\ResourceDictionary.axaml">
+      <SubType>Designer</SubType>
+    </AvaloniaXaml>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\IngredientEditFormWindow.axaml.cs">
+      <DependentUpon>IngredientEditFormWindow.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\DateOrderView.axaml.cs">
+      <DependentUpon>DateOrderView.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

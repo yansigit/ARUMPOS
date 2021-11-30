@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:ARUMPOS.ViewModels"
+             xmlns:v="using:ARUMPOS.Views"
+             xmlns:styles="clr-namespace:Material.Styles;assembly=Material.Styles"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="120"
+             x:Class="ARUMPOS.Views.CmsListBoxCardView">
+    <Design.DataContext>
+        <vm:CmsListBoxCardViewModel />
+    </Design.DataContext>
+    <StackPanel Margin="10">
+        <styles:Card Padding="0" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+			<DockPanel>
+            <StackPanel DockPanel.Dock="Right" Spacing="10" Orientation="Horizontal"
+                        Margin="0 0 5 0">
+                
+            </StackPanel>
+				<StackPanel Orientation="Horizontal">
+					<Image Source="{Binding ImageSource}"
+                           Width="80" Height="80"
+                           Margin="10"/>
+					<StackPanel VerticalAlignment="Center">
+						<TextBlock Classes="Headline6" Text="{Binding Name}" />
+						<TextBlock Text="{Binding HelperText}" />
+					</StackPanel>
+				</StackPanel>
+			</DockPanel>
+        </styles:Card>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,42 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+        xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+        xmlns:lib="clr-namespace:ARUMPOS.Lib"
+        xmlns:vm="using:ARUMPOS.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="400"
+        Width="250" Height="400"
+        x:Class="ARUMPOS.Views.IngredientEditFormWindow"
+        Title="IngredientEditFormWindow"
+        ExtendClientAreaToDecorationsHint="True"
+        WindowStartupLocation="CenterOwner"
+        Padding="10">
+    <Design.DataContext>
+        <vm:IngredientEditFormWindowViewModel />
+    </Design.DataContext>
+    <Window.DataContext>
+        <vm:IngredientEditFormWindowViewModel />
+    </Window.DataContext>
+	<DockPanel>
+        <Button DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" Content="추가" Command="{Binding AddIngredient}" />
+        <StackPanel Spacing="10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+                <TextBlock Text="재료 이름" VerticalAlignment="Center" />
+                <TextBox Watermark="가나다" Text="{Binding IngredientName}" BorderThickness="0" Width="150"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+                <TextBlock Text="우선순위" VerticalAlignment="Center" />
+                <TextBox Watermark="10" Text="{Binding IngredientPriority}" BorderThickness="0" Width="150"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+                <TextBlock Text="이미지 선택" VerticalAlignment="Center" />
+                <Button Content="선택" Command="{Binding OpenImagePicker}" />
+            </StackPanel>
+            <Image x:Name="ImagePicker" Width="200" Source="{Binding ImageSource}" />
+        </StackPanel>
+	</DockPanel>
+	
+
+</Window>

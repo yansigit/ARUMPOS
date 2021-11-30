@@ -1,0 +1,34 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:cc="clr-namespace:Material.Ripple">
+    <Style Selector="cc|RippleEffect">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid ClipToBounds="True">
+                    <Rectangle Fill="Red" Opacity="0" ClipToBounds="True"/> 
+                    <ContentPresenter Name="Content"
+                                      Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    <Canvas Name="PART_RippleCanvasRoot"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            IsHitTestVisible="False"
+                            Opacity="{TemplateBinding RippleOpacity}"/>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style> 
+    
+    <!-- Transitions -->
+    
+    <Style Selector="cc|RippleEffect:not(.notransitions) /template/ Canvas#PART_RippleCanvasRoot cc|Ripple">
+        <Setter Property="Transitions">
+            <Transitions>
+                <ThicknessTransition Property="Margin" Duration="{x:Static cc:Ripple.Duration}" Easing="CircularEaseOut"/>
+                <DoubleTransition Property="Width" Duration="{x:Static cc:Ripple.Duration}" Easing="CircularEaseOut"/>
+                <DoubleTransition Property="Height" Duration="{x:Static cc:Ripple.Duration}" Easing="CircularEaseOut"/>
+                <DoubleTransition Property="Opacity" Duration="{x:Static cc:Ripple.Duration}" Easing="CircularEaseOut"/>
+            </Transitions>
+        </Setter>
+    </Style>
+</Styles>

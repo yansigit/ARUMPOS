@@ -1,0 +1,63 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <LangVersion>8</LangVersion>
+        <Authors>Larymar,SKProCH,Appleneko2001</Authors>
+        <Company>Larymar,SKProCH,Appleneko2001</Company>
+        <PackageProjectUrl>https://github.com/AvaloniaUtils/material.avalonia</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/AvaloniaUtils/material.avalonia</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <Description>Main styles library of Material.Avalonia.</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <AvaloniaResource Include="**\*.xaml">
+            <SubType>Designer</SubType>
+        </AvaloniaResource>
+    </ItemGroup>
+
+    <ItemGroup> 
+      <None Remove="Fonts\Roboto\Roboto-Black.ttf" />
+      <None Remove="Fonts\Roboto\Roboto-BlackItalic.ttf" />
+      <None Remove="Fonts\Roboto\Roboto-Bold.ttf" />
+      <None Remove="Fonts\Roboto\Roboto-BoldItalic.ttf" />
+      <None Remove="Fonts\Roboto\Roboto-Italic.ttf" />
+      <None Remove="Fonts\Roboto\Roboto-Light.ttf" />
+      <None Remove="Fonts\Roboto\Roboto-LightItalic.ttf" />
+      <None Remove="Fonts\Roboto\Roboto-Medium.ttf" />
+      <None Remove="Fonts\Roboto\Roboto-MediumItalic.ttf" />
+      <None Remove="Fonts\Roboto\Roboto-Regular.ttf" />
+      <None Remove="Fonts\Roboto\Roboto-Thin.ttf" />
+      <None Remove="Fonts\Roboto\Roboto-ThinItalic.ttf" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AvaloniaResource Include="Fonts\Roboto\Roboto-Black.ttf" />
+      <AvaloniaResource Include="Fonts\Roboto\Roboto-BlackItalic.ttf" />
+      <AvaloniaResource Include="Fonts\Roboto\Roboto-Bold.ttf" />
+      <AvaloniaResource Include="Fonts\Roboto\Roboto-BoldItalic.ttf" />
+      <AvaloniaResource Include="Fonts\Roboto\Roboto-Italic.ttf" />
+      <AvaloniaResource Include="Fonts\Roboto\Roboto-Light.ttf" />
+      <AvaloniaResource Include="Fonts\Roboto\Roboto-LightItalic.ttf" />
+      <AvaloniaResource Include="Fonts\Roboto\Roboto-Medium.ttf" />
+      <AvaloniaResource Include="Fonts\Roboto\Roboto-MediumItalic.ttf" />
+      <AvaloniaResource Include="Fonts\Roboto\Roboto-Regular.ttf" />
+      <AvaloniaResource Include="Fonts\Roboto\Roboto-Thin.ttf" />
+      <AvaloniaResource Include="Fonts\Roboto\Roboto-ThinItalic.ttf" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\Material.Colors\Material.Colors.csproj" />
+      <ProjectReference Include="..\Material.Ripple\Material.Ripple.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Avalonia" Version="0.10.0" />
+      <PackageReference Include="ESCPOS_NET" Version="1.6.0" />
+      <PackageReference Include="Material.Icons" Version="1.0.8" />
+      <PackageReference Include="Material.Icons.Avalonia" Version="1.0.2" />
+    </ItemGroup>
+
+</Project>

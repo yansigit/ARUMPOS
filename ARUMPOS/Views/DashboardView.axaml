@@ -1,0 +1,188 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:styles="clr-namespace:Material.Styles;assembly=Material.Styles"
+             xmlns:vm="using:ARUMPOS.ViewModels"
+             xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             xmlns:plot="clr-namespace:ScottPlot.Avalonia;assembly=ScottPlot.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="850"
+             x:Class="ARUMPOS.Views.DashboardView">
+    <Design.DataContext>
+        <vm:DashboardViewModel />
+    </Design.DataContext>
+    <UserControl.DataContext>
+        <vm:DashboardViewModel />
+    </UserControl.DataContext>
+    <DockPanel>
+        <!-- <Button HorizontalAlignment="Stretch" -->
+        <!--         Margin="10" -->
+        <!--         DockPanel.Dock="Bottom" -->
+        <!--         Command="{Binding SwitchIsStoreClosed}"> -->
+        <!--     <TextBlock Text="{Binding StoreCloseButtonText}" -->
+        <!--                FontSize="20" Foreground="White" /> -->
+        <!-- </Button> -->
+        <Grid DockPanel.Dock="Bottom" ColumnDefinitions="*,*">
+            <Button x:Name="RefreshButton" HorizontalAlignment="Stretch"
+                    Margin="10" Grid.Row="0" Grid.Column="0"
+                    Command="{Binding RefreshCommand}"
+                    CommandParameter="{x:Null}">
+                  <TextBlock Text="새로고침"
+                             FontSize="20" Foreground="White" />
+              </Button>
+            <Button x:Name="CloseButton" HorizontalAlignment="Stretch"
+                    Margin="10" Grid.Row="0" Grid.Column="1"
+                    Command="{Binding SwitchIsStoreClosed}"
+                    CommandParameter="{x:Null}">
+                <TextBlock Text="{Binding StoreCloseButtonText}"
+                           FontSize="20" Foreground="White" />
+            </Button>
+        </Grid>
+
+        <StackPanel Orientation="Vertical" Margin="10" Spacing="20" DockPanel.Dock="Top">
+            <styles:Card Width="620" VerticalAlignment="Top" Margin="10"
+                         Background="{Binding ShopNameBackground}">
+              <TextBlock Text="{Binding ShopName}" TextAlignment="Center"
+                         FontSize="25" Foreground="White"
+                         FontWeight="ExtraBold" />
+            </styles:Card>
+            <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+
+                <styles:Card Width="200" Padding="0" VerticalAlignment="Top">
+                    <StackPanel Margin="10" Spacing="5">
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <!-- <icon:Icon Value="fas fa-dollar-sign" /> -->
+                            <avalonia:MaterialIcon Kind="Dollar" Width="25"
+                                                   Height="25"
+                                                   Foreground="#7ac38f" />
+                            <TextBlock Text="{Binding TodayIncomePercentage}"
+                                       VerticalAlignment="Center" Foreground="#7ac38f"
+                                       FontWeight="Bold" />
+
+                        </StackPanel>
+                        <TextBlock Text="{Binding TodayIncome}" FontSize="25" Foreground="#FF5722"
+                                   FontWeight="ExtraBold" />
+                        <TextBlock Text="오늘 매상" />
+                    </StackPanel>
+                </styles:Card>
+
+                <styles:Card Width="200" Padding="0" VerticalAlignment="Top">
+                    <StackPanel Margin="10" Spacing="5">
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <!-- <icon:Icon Value="fas fa-dollar-sign" /> -->
+                            <avalonia:MaterialIcon Kind="Numbers" Width="25"
+                                                   Height="25"
+                                                   Foreground="#7ac38f" />
+                            <TextBlock Text="{Binding TodaySalesPercentage}"
+                                       VerticalAlignment="Center" Foreground="#7ac38f"
+                                       FontWeight="Bold" />
+
+                        </StackPanel>
+                        <TextBlock Text="{Binding TodaySales}" FontSize="25" Foreground="#FF5722"
+                                   FontWeight="ExtraBold" />
+                        <TextBlock Text="오늘 판매량" />
+                    </StackPanel>
+                </styles:Card>
+
+                <styles:Card Width="200" Padding="0" VerticalAlignment="Top">
+                    <StackPanel Margin="10" Spacing="5">
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <!-- <icon:Icon Value="fas fa-dollar-sign" /> -->
+                            <avalonia:MaterialIcon Kind="Food" Width="25"
+                                                   Height="25"
+                                                   Foreground="#7ac38f" />
+                            <TextBlock Text="{Binding TodayTopProductPercentage}"
+                                       VerticalAlignment="Center" Foreground="#7ac38f"
+                                       FontWeight="Bold" />
+
+                        </StackPanel>
+                        <TextBlock Text="{Binding TodayTopProduct}" FontSize="25" Foreground="#FF5722"
+                                   FontWeight="ExtraBold" />
+                        <TextBlock Text="가장 많이 판매된 품목" />
+                    </StackPanel>
+                </styles:Card>
+            </StackPanel>
+        </StackPanel>
+        <ScrollViewer>
+            <StackPanel>
+              <styles:Card Width="620" VerticalAlignment="Top" Margin="10">
+                  <DockPanel>
+                      <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="5">
+                          <!-- <icon:Icon Value="fas fa-dollar-sign" /> -->
+                          <avalonia:MaterialIcon Kind="ChartArc" Width="25"
+                                                 Height="25"
+                                                 Foreground="#7ac38f" />
+                          <TextBlock Text="{Binding TodayMenuCounts}"
+                                     VerticalAlignment="Center" Foreground="#7ac38f"
+                                     FontWeight="Bold" />
+
+                      </StackPanel>
+                      <TextBlock DockPanel.Dock="Top" Text="오늘의 메뉴 비중은?" FontSize="25" Foreground="#FF5722"
+                                 FontWeight="ExtraBold" />
+                      <plot:AvaPlot DockPanel.Dock="Top"
+                                    IsHitTestVisible="False"
+                                    Height="300" x:Name="AvaPlot1">
+                          
+                      </plot:AvaPlot>
+                      <WrapPanel HorizontalAlignment="Center">
+                          <ItemsRepeater Items="{Binding TodayMenuItems}">
+                            <ItemsRepeater.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding }" />
+                                </DataTemplate>
+                            </ItemsRepeater.ItemTemplate>
+                          </ItemsRepeater>
+                          <WrapPanel.Styles>
+                              <Style Selector="TextBlock">
+                                  <Setter Property="Margin" Value="10" />
+                              </Style>
+                          </WrapPanel.Styles>
+                      </WrapPanel>
+                  </DockPanel>
+              </styles:Card>
+                <styles:Card Width="620" VerticalAlignment="Top" Margin="10">
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="5">
+                            <!-- <icon:Icon Value="fas fa-dollar-sign" /> -->
+                            <avalonia:MaterialIcon Kind="ChartBar" Width="25"
+                                                   Height="25"
+                                                   Foreground="#7ac38f" />
+                            <TextBlock x:Name="WeekSales" Text="총 999원"
+                                       VerticalAlignment="Center" Foreground="#7ac38f"
+                                       FontWeight="Bold" />
+
+                        </StackPanel>
+                        <TextBlock DockPanel.Dock="Top" Text="이번주 매출 한눈에 보기" FontSize="25" Foreground="#FF5722"
+                                   FontWeight="ExtraBold" />
+                        <plot:AvaPlot DockPanel.Dock="Top" Height="250" IsHitTestVisible="False" x:Name="AvaPlot2" />
+                        <WrapPanel HorizontalAlignment="Center">
+                            <ItemsRepeater Items="{Binding ToDo}">
+                                <ItemsRepeater.ItemTemplate>
+                                  <DataTemplate>
+                                      <TextBlock Text="● 월요일: \20,000" />
+                                  </DataTemplate>
+                                </ItemsRepeater.ItemTemplate>
+                            </ItemsRepeater>
+                            <WrapPanel.Styles>
+                                <Style Selector="TextBlock">
+                                    <Setter Property="Margin" Value="10" />
+                                </Style>
+                            </WrapPanel.Styles>
+                        </WrapPanel>
+                    </DockPanel>
+                </styles:Card>
+            </StackPanel>
+            <ScrollViewer.Styles>
+                <Style Selector="ScrollViewer">
+                    <Setter Property="Padding" Value="0"></Setter>
+                </Style>
+                <Style Selector="ScrollViewer Grid#rootGrid">
+                    <Setter Property="MinWidth" Value="40"></Setter>
+                </Style>
+                <Style Selector="ScrollViewer Thumb#thumb">
+                    <Setter Property="MinWidth" Value="40"></Setter>
+                </Style>
+            </ScrollViewer.Styles>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>

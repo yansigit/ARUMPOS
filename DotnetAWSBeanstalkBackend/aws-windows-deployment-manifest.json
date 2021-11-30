@@ -1,0 +1,8 @@
+﻿{
+  "publishOptions": {
+    "include": [
+      ".ebextensions",
+      "aws-windows-deployment-manifest.json"
+    ]
+  }
+}

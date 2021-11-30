@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="ARUMPOS/App.axaml" value="ARUMPOS/ARUMPOS.csproj" />
+        <entry key="ARUMPOS/Views/CalculateView.axaml" value="ARUMPOS/ARUMPOS.csproj" />
+        <entry key="ARUMPOS/Views/CmsView.axaml" value="ARUMPOS/ARUMPOS.csproj" />
+        <entry key="ARUMPOS/Views/MainWindow.axaml" value="ARUMPOS/ARUMPOS.csproj" />
+        <entry key="ARUMPOS/Views/OrderListView.axaml" value="ARUMPOS/ARUMPOS.csproj" />
+        <entry key="ARUMPOS/Views/cmsView.axaml" value="ARUMPOS/ARUMPOS.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

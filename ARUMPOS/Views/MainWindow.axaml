@@ -1,0 +1,114 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ARUMPOS.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:v="using:ARUMPOS.Views"
+        xmlns:icon="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
+        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
+        Width="900" Height="600"
+        x:Class="ARUMPOS.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="ARUMPOS"
+        ExtendClientAreaToDecorationsHint="True"
+        WindowState="Maximized">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <DockPanel>
+        <TitleBar DockPanel.Dock="Top" />
+        <TabControl TabStripPlacement="Left" HorizontalContentAlignment="Stretch" SelectedIndex="0">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel.RenderTransform>
+                            <TransformGroup>
+                                <RotateTransform Angle="90" />
+                            </TransformGroup>
+                        </StackPanel.RenderTransform>
+                        <icon:Icon Value="fas fa-utensils" FontSize="35" />
+                        <TextBlock Classes="NormalSize" Text="오늘주문" />
+                    </StackPanel>
+                </TabItem.Header>
+                <v:TodayOrderView />
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel.RenderTransform>
+                            <TransformGroup>
+                                <RotateTransform Angle="90" />
+                            </TransformGroup>
+                        </StackPanel.RenderTransform>
+                        <icon:Icon Value="fas fa-utensils" FontSize="35" />
+                        <TextBlock Classes="NormalSize" Text="날짜별주문" />
+                    </StackPanel>
+                </TabItem.Header>
+                <v:DateOrderView />
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel.RenderTransform>
+                            <TransformGroup>
+                                <RotateTransform Angle="90" />
+                            </TransformGroup>
+                        </StackPanel.RenderTransform>
+                        <icon:Icon Value="fas fa-calculator" FontSize="35" />
+                        <TextBlock Classes="NormalSize" Text="정산" />
+                    </StackPanel>
+                </TabItem.Header>
+                <v:CalculateView Margin="10" />
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel.RenderTransform>
+                            <TransformGroup>
+                                <RotateTransform Angle="90" />
+                            </TransformGroup>
+                        </StackPanel.RenderTransform>
+                        <icon:Icon Value="fas fa-hamburger" FontSize="35" />
+                        <TextBlock Classes="NormalSize" Text="메뉴관리" />
+                    </StackPanel>
+                </TabItem.Header>
+                <v:CmsView />
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Vertical" Margin="0 0">
+                        <StackPanel.RenderTransform>
+                            <TransformGroup>
+                                <RotateTransform Angle="90" />
+                            </TransformGroup>
+                        </StackPanel.RenderTransform>
+                        <icon:Icon Value="fas fa-power-off" FontSize="35" />
+                        <TextBlock Classes="NormalSize" Text="마감관리" />
+                    </StackPanel>
+                </TabItem.Header>
+                <v:DashboardView />
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+    <Window.Styles>
+        <Style Selector="TabControl[TabStripPlacement=Left] /template/ Grid#HeaderGrid">
+            <Setter Property="Width" Value="150" />
+        </Style>
+        <Style Selector="TextBlock.NormalSize">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+        <Style Selector="ListBoxItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+        <Style Selector="Button">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        <Style Selector="Button[IsPointerOver=True] TextBlock">
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+    </Window.Styles>
+</Window>
