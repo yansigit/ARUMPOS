@@ -6,6 +6,10 @@ Check [Here](https://github.com/yansigit/ARUMPOS/tree/master/ARUMPOS) for the PO
 
 MySQL is used for DBMS.
 
+## Screenshots
+
+![img_5](https://user-images.githubusercontent.com/44089734/150043623-db4f3b51-262e-412a-8e6d-496145404108.png)
+
 ## Stacks
 
 - C# (.NET5)
